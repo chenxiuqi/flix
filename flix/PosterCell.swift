@@ -10,5 +10,6 @@ import UIKit
 
 class PosterCell: UICollectionViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var ratingLabel: UILabel!
     
 }

@@ -12,6 +12,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+  
+    
     var movies: [[String: Any]] = []
     
     override func viewDidLoad() {
@@ -33,6 +35,15 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
             let posterURL = URL(string: baseURLString + posterPathString)!
             cell.posterImageView.af_setImage(withURL: posterURL)
             
+//            let movie = movies[indexPath.row]
+//            let title = movie["title"] as! String
+//            let overview = movie["overview"] as! String
+//            cell.titleLabel.text = title
+//            cell.overviewLabel.text = overview
+            
+            
+            let rating = movie["vote_average"] as! Double
+            cell.ratingLabel.text = String(rating)
         }
         return cell
         
