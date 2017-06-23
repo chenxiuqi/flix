@@ -9,20 +9,26 @@
 import UIKit
 import AlamofireImage
 
-class NowPlayingViewController: UIViewController, UITableViewDataSource {
+class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
+    var filteredData: [String]!
     
-    
-
+    var allMovies: [[String: Any]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+//        searchBar.delegate = self
+//        filteredData = allMovies
+        
         activityIndicator.startAnimating()
         activityIndicator.stopAnimating()
         refreshControl = UIRefreshControl()
@@ -30,7 +36,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         // add refresh control to table view
         tableView.insertSubview(refreshControl, at: 0)
         
-        tableView.dataSource = self
+        
         fetchMovies()
         
         
@@ -76,6 +82,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]
+                
+//                // *** fix this code here!
+//                for movie in movies {
+//                    let title = movie["title"] as! String
+//                    print(title)
+//
+//                    self.allMovies = self.allMovies + (title as! String)
+//                }
+//                print(self.allMovies)
                 self.movies = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
@@ -108,6 +123,22 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     
     
+   // search bar
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        // When there is no text, filteredData is the same as the original data
+//        // When user has entered text into the search box
+//        // Use the filter method to iterate over all items in the data array
+//        // For each item, return true if the item should be included and false if the
+//        // item should NOT be included
+//        filteredData = searchText.isEmpty ? allMovies : allMovies.filter { (item: String) -> Bool in
+//            // If dataItem matches the searchText, return true to include it
+//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+//        // print(filteredData)
+//        
+//        tableView.reloadData()
+//    }
+//    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {
