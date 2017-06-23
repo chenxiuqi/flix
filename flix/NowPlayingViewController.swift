@@ -51,6 +51,28 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
+                // Alert when there is a network error
+                let alertController = UIAlertController(title: "Movies Cannot Load", message: "Please check your connection", preferredStyle: .alert)
+                
+                // create a cancel action
+                let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel) { (action) in
+                    // handle cancel response here. Doing nothing will dismiss the view.
+                }
+                // add the cancel action to the alertController
+                alertController.addAction(cancelAction)
+                
+                // create an OK action
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    // handle response here.
+                }
+                // add the OK action to the alert controller
+                alertController.addAction(OKAction)
+                
+                self.present(alertController, animated: true) {
+                }
+                
+                
+                
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]
