@@ -18,16 +18,16 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
-    var filteredData: [String]!
+    var filteredData: [[String: Any]]!
     
-    var allMovies: [[String: Any]] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
-//        searchBar.delegate = self
-//        filteredData = allMovies
+        searchBar.delegate = self
+        filteredData = movies
         
         activityIndicator.startAnimating()
         activityIndicator.stopAnimating()
@@ -82,16 +82,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String: Any]]
-                
-//                // *** fix this code here!
-//                for movie in movies {
-//                    let title = movie["title"] as! String
-//                    print(title)
-//
-//                    self.allMovies = self.allMovies + (title as! String)
-//                }
-//                print(self.allMovies)
+               
                 self.movies = movies
+                self.filteredData = movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
@@ -102,12 +95,13 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie = movies[indexPath.row]
+     
+        let movie = filteredData[indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         cell.titleLabel.text = title
@@ -124,22 +118,23 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     }
     
     
-   // search bar
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        // When there is no text, filteredData is the same as the original data
-//        // When user has entered text into the search box
-//        // Use the filter method to iterate over all items in the data array
-//        // For each item, return true if the item should be included and false if the
-//        // item should NOT be included
-//        filteredData = searchText.isEmpty ? allMovies : allMovies.filter { (item: String) -> Bool in
-//            // If dataItem matches the searchText, return true to include it
-//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-//        }
-//        // print(filteredData)
-//        
-//        tableView.reloadData()
-//    }
-//    
+//    search bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // When there is no text, filteredData is the same as the original data
+        // When user has entered text into the search box
+        // Use the filter method to iterate over all items in the data array
+        // For each item, return true if the item should be included and false if the
+        // item should NOT be included
+        filteredData = searchText.isEmpty ? movies : movies.filter { (item: [String: Any]) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            let itemTitle = item["title"] as! String
+            return itemTitle.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        // print(filteredData)
+        
+        tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {

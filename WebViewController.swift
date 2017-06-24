@@ -35,13 +35,13 @@ class WebViewController: UIViewController {
                     } else if let data = data {
                     let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                     let oneMovie = dataDictionary["results"] as! [[String: Any]]
-                    print(oneMovie)
+      
                     let urlKey = oneMovie[0]["key"] as! String
-                    print(urlKey)
+            
                     
                     var url = "https://www.youtube.com/watch?v="
                     url = url + urlKey
-                    print(url)
+             
                     // Convert the url String to a NSURL object.
                     let requestURL = URL(string:url)
                     // Place the URL in  URL Request.
