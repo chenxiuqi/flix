@@ -57,7 +57,7 @@
                                                     <color key="tintColor" red="1" green="0.69888491255414764" blue="0.88178251014105258" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wonder Woman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afR-3D-kzD">
-                                                    <rect key="frame" x="146" y="8" width="217" height="43"/>
+                                                    <rect key="frame" x="146" y="8" width="217" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -110,14 +110,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wonder Woman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qz-10-NOD">
-                                <rect key="frame" x="136" y="302" width="215" height="21"/>
+                                <rect key="frame" x="136" y="291" width="215" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOD-TL-4NP">
-                                <rect key="frame" x="136" y="321" width="185" height="38"/>
+                                <rect key="frame" x="136" y="337" width="185" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,6 +130,21 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27H-Q9-vgo">
+                                <rect key="frame" x="136" y="367" width="185" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YiR-sc-H8V">
+                                <rect key="frame" x="299" y="345" width="43" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trailer"/>
+                                <connections>
+                                    <segue destination="dSJ-Yr-fEK" kind="show" id="l3P-fb-gIQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -137,6 +152,7 @@
                         <outlet property="backdropImageView" destination="xwP-si-LdG" id="rmX-YP-yMo"/>
                         <outlet property="overviewLabel" destination="kgK-Oe-8eJ" id="tRB-iH-aoB"/>
                         <outlet property="posterImageView" destination="WLa-Zc-qMf" id="OgF-RX-dUH"/>
+                        <outlet property="ratingLabel" destination="27H-Q9-vgo" id="tJi-nE-5Kd"/>
                         <outlet property="releaseDateLabel" destination="MOD-TL-4NP" id="PcF-DO-KED"/>
                         <outlet property="titleLabel" destination="2Qz-10-NOD" id="nUZ-eh-Vzh"/>
                     </connections>
@@ -144,6 +160,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ms4-w5-Od8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2416.8000000000002" y="37.331334332833585"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="SFK-wD-VvW">
+            <objects>
+                <viewController id="dSJ-Yr-fEK" customClass="WebViewController" customModule="flix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bsK-lX-Koz"/>
+                        <viewControllerLayoutGuide type="bottom" id="BZm-HL-vWs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kTl-wV-I7n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tvr-Iz-rd3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webViewWindow" destination="Tvr-Iz-rd3" id="w9F-eW-uw7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0TS-1h-cHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3176.8000000000002" y="39.130434782608695"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="NOg-BH-Qn2">
@@ -230,6 +274,7 @@
                                         <connections>
                                             <outlet property="posterImageView" destination="YKe-iB-hVM" id="bJJ-CA-3T9"/>
                                             <outlet property="ratingLabel" destination="dXV-Sf-apU" id="UlS-kV-Qzv"/>
+                                            <segue destination="ki7-YV-480" kind="show" id="i3Q-lN-256"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -265,9 +310,29 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="853.22338830584715"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Ecd-Gz-57I">
+            <objects>
+                <viewController id="d2K-Cj-P78" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N0K-s3-j1j"/>
+                        <viewControllerLayoutGuide type="bottom" id="nIp-Se-PfC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1CK-Je-fWp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3s-pJ-5I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="superhero_tabbar_item" width="21" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0dK-YF-dTp"/>
+    </inferredMetricsTieBreakers>
 </document>
