@@ -1,4 +1,4 @@
-# Project 2 - *Name of App Here*
+# Project 2 - Flix
 
 **flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
@@ -47,7 +47,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Describe any challenges encountered while building the app:
+Initially, I was confused about the network requests but eventually I really got the hang of it once I did it multiple times!
 
 ## Credits
 
