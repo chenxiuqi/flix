@@ -36,6 +36,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         // add refresh control to table view
         tableView.insertSubview(refreshControl, at: 0)
         
+        // dynamic height cells
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
         
         fetchMovies()
         
